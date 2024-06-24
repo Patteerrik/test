@@ -20,20 +20,21 @@ if os.path.isfile('env.py'):
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    "8000-patteerrik-test-7g9yhdsqzbn.ws-eu114.gitpod.io",
-    ".herokuapp.com"
+    '127.0.0.1',
+    '8000-patteerrik-test-7g9yhdsqzbn.ws-eu114.gitpod.io',
+    '.herokuapp.com'
 ]
+
 
 
 # Application definition
@@ -45,8 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'django_summernote',
     'blog',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'about',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'codestar.urls'
@@ -96,9 +103,8 @@ DATABASES = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://8000-patteerrik-test-7g9yhdsqzbn.ws-eu114.gitpod.io",
-    "https://your-heroku-app.herokuapp.com",  
-    "https://*.gitpod.io",
+    "https://*.codeanyapp.com",
+    "https://*.herokuapp.com"
 ]
 
 # Password validation
@@ -119,6 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
