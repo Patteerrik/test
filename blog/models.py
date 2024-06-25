@@ -1,5 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+
+class CollaborateRequest(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
 
 def profile_page(request):
     user = get_object_or_404(User, user=request.user)
